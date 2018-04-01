@@ -1,7 +1,8 @@
 ﻿<html>
 
 <head>
-  <meta content="text/html; charset="utf-8"; 
+  <meta content="text/html"
+        charset="utf-8"
         http-equiv="content-type">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script>
@@ -17,11 +18,11 @@
 
     .grid {
       width: 1005px;
-      height: 1250px;
     }
 
     .clock-td {
       height: 240px;
+      padding-left: 150px;
     }
 
     .weather-td {
@@ -43,77 +44,29 @@
       -webkit-transform-origin: 0 0;
     }
   </style>
-  <script>
-    setInterval(function () {
-      var iframe = document.getElementById('wheather-frame');
-      iframe.src = 'http://ti3d.ru/weather.html';
-    }, 1800000)
-  </script>
+
 
 </head>
 
 <body bgcolor="#000000">
   <table class="grid">
-    <tr>      
-      <td colspan="2" class="clock-td">
+    <tr>
+      <td colspan="2"
+          class="clock-td">
         <div id="root"></div>
         <script src="js/index.js"></script>
       </td>
     </tr>
-<tr>      
-      <td colspan="2" class="date_td">
-		
-		<div style="font-size: 40px; color: rgb(255, 255, 255); text-align: right;"><!-- информер на сайт дата день недели год | домашняя страница http://zagd.ru -->
-			<SCRIPT LANGUAGE="JavaScript">
-<!--
-function MakeArray(n) {
-	this.length = n
-	return this
-}
-monthNames = new MakeArray(12)
-monthNames[1] = "Январь"
-monthNames[2] = "Февраль"
-monthNames[3] = "Март"
-monthNames[4] = "Апрель"
-monthNames[5] = "Май"
-monthNames[6] = "Июнь"
-monthNames[7] = "Июль"
-monthNames[8] = "Август"
-monthNames[9] = "Сентябрь"
-monthNames[10] = "Октябрь"
-monthNames[11] = "Ноябрь"
-monthNames[12] = "Декабрь"
-dayNames = new MakeArray(7)
-dayNames[1] = "Воскресенье"
-dayNames[2] = "Понедельник"
-dayNames[3] = "Вторник"
-dayNames[4] = "Среда"
-dayNames[5] = "Четверг"
-dayNames[6] = "Пятница"
-dayNames[7] = "Суббота"
+    <tr>
+      <td colspan="2"
+          class="date_td">
 
-function customDateString() {
-	currentDate = new Date()
-	var theDay = dayNames[currentDate.getDay() + 1]
-	var theMonth = monthNames[currentDate.getMonth() + 1]
-	msie4 = ((navigator.appName == "Microsoft Internet Explorer") && (parseInt(navigator.appVersion) >= 4 ));
-	if (msie4) {
-	    var theYear = currentDate.getYear()
-	}
-	else {
-	     var theYear = currentDate.getYear() +1900
-	}
-	return theDay + ", " + theMonth + " " + currentDate.getDate() + ", " + theYear
-}
-//-->
-</SCRIPT><a href="http://zagd.ru/share42/informers4.html"></a>
-<SCRIPT LANGUAGE="JavaScript">
-document.write(customDateString())
-</SCRIPT>
-</div>
-		
+        <div id="datePlaceholder"
+             style="font-size: 40px; color: rgb(255, 255, 255); text-align: right;">
+        </div>
+
       </td>
-    </tr>	
+    </tr>
 
     <tr>
       <td style="width: 500px"></td>
@@ -142,3 +95,38 @@ document.write(customDateString())
   </table>
 
 </html>
+
+<script>
+  setInterval(function () {
+    var iframe = document.getElementById('wheather-frame');
+    iframe.src = 'http://ti3d.ru/weather.html';
+  }, 1800000);
+
+  function showDate() {
+    var placeholder = document.getElementById("datePlaceholder");
+    placeholder.innerHTML = customDateString();
+  }
+
+  showDate();
+
+  setInterval(function () {
+    showDate();
+  }, 60000);
+
+  function customDateString() {
+    var monthNames = [
+      "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+    ];
+
+    var dayNames = [
+      "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"
+    ];
+
+    var currentDate = new Date();
+    var theDay = dayNames[currentDate.getDay()];
+    var theMonth = monthNames[currentDate.getMonth()];
+    var theYear = currentDate.getFullYear();
+
+    return theDay + ", " + theMonth + " " + currentDate.getDate() + ", " + theYear
+  }
+</script>
