@@ -1,18 +1,88 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+
 <head>
+    <style>
+        html {
+            font-size: 18px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
 
-
-
+        body {
+            background-color: #000;
+            color: #EEE;
+        }
+    </style>
 </head>
 
 
-<body bgcolor="#aaaaaa">
+<body>
 
-<style>.ya-news__title{font-size:100%;font-weight:700;margin-bottom:.5em}.ya-news__date{font-size:85%;margin-right:.5em}.ya-news__informer{font-size:85%;margin-bottom:.3em}.ya-news__description{font-size:85%;margin-bottom:.5em}.ya-news__all{font-size:80%;margin-top:.3em}</style><script src="//news.yandex.ru/ru/daily5.utf8.js" charset="utf-8"></script><script>(function(w,rubric){var data=w[rubric];if(!data||!data.length){return;}function formatDate(ts){var d=new Date(ts*1000);return d.getHours()+':'+('0'+d.getMinutes()).substr(-2);}var html='<div class="ya-news__title"><a href="//news.yandex.ru/" target="_blank">Яндекс.Новости</a></div>';data.sort(function(a,b){return a.date==b.date?a.time<b.time?1:a.time>b.time?-1:0:a.date<b.date?1:a.date>b.date?-1:void 0});for(var i=0;i<data.length;i++){var item=data[i];html+='<div><span class="ya-news__date">'+item.date+'&nbsp;'+item.time+'</span><span class="ya-news__title"><a href="'+item.url+'" target="_blank">'+item.title+'</a></span></div><div class="ya-news__description">'+item.descr+'</div>';}html+='<div class="ya-news__all"><a href="//news.yandex.ru/" target="_blank">Все новости на '+formatDate(w.update_time_t)+'</a></div>';document.write(html);}(window, 'm_daily'));</script>
+    <style>
+        .ya-news__title {
+            margin-bottom: .7em;
+        }
 
+        .ya-news__title a {
+            margin-bottom: .5em;
+            color: #EEE;
+            text-decoration: none;
+        }
 
+        .ya-news__date {
+            margin-right: .5em;
+        }
 
+        .ya-news__informer {
+            margin-bottom: .3em;
+        }
 
+        .ya-news__description {
+            font-size: 85%;
+            margin-top: .1em;
+            margin-bottom: .8em;
+            color: FFF;
+        }
+
+        .ya-news__all {
+            font-size: 80%;
+            margin-top: .3em;
+            color: FFF;
+        }
+    </style>
+    <script src="//news.yandex.ru/ru/daily5.utf8.js"
+            charset="utf-8"></script>
+    <script>
+        (function (w, rubric) {
+            var data = w[rubric];
+
+            if (!data || !data.length) {
+                return;
+            }
+
+            function formatDate(ts) {
+                var d = new Date(ts * 1000);
+                return d.getHours() + ':' + ('0' + d.getMinutes()).substr(-2);
+            }
+            var html = '';
+            data.sort(function (a, b) {
+                return a.date == b.date ? a.time < b.time ? 1 : a.time > b.time ? -1 : 0 : a.date < b.date ? 1 : a.date > b.date ? -1 : void 0
+            });
+
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i]; 
+                html += '<div><span class="ya-news__date">' + 
+                item.date + '&nbsp;' + 
+                item.time + '</span><span class="ya-news__title"><a href="' +
+                item.url + '" target="_blank">' + 
+                item.title + '</a></span></div><div class="ya-news__description">' + 
+                item.descr + '</div>';
+            } 
+            
+            // html += '<div class="ya-news__all"><a href="//news.yandex.ru/" target="_blank">Все новости на ' + 
+            // formatDate(w.update_time_t) + '</a></div>'; 
+            document.write(html);
+        }(window, 'm_daily'));</script>
 </body>
+
 </html>
