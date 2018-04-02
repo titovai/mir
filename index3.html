@@ -1,0 +1,141 @@
+﻿<html>
+
+<head>
+  <meta content="text/html"
+        charset="utf-8"
+        http-equiv="content-type">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script>
+  <title></title>
+  <link rel="stylesheet"
+        href="css/style.css">
+
+  <style>
+    #root {
+      min-height: 240px !important;
+      margin: 0px;
+    }
+
+    .grid {
+      width: 1005px;
+    }
+
+    .clock-td {
+      height: 240px;
+      padding-left: 150px;
+    }
+
+    .weather-td {
+      height: 350px;
+      width: 450px;
+    }
+
+    .flipClock {
+      transform: scale(2);
+    }
+
+    #wheather-frame {
+      zoom: 0.15;
+      -moz-transform: scale(2);
+      -moz-transform-origin: 0 0;
+      -o-transform: scale(2);
+      -o-transform-origin: 0 0;
+      -webkit-transform: scale(2);
+      -webkit-transform-origin: 0 0;
+    }
+  </style>
+
+
+</head>
+
+<body bgcolor="#000000">
+  <table class="grid">
+    <tr>
+      <td colspan="2"
+          class="clock-td">
+        <div id="root"></div>
+        <script src="js/index.js"></script>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"
+          class="date_td">
+
+        <div id="datePlaceholder"
+             style="font-size: 40px; color: rgb(255, 255, 255); text-align: right;">
+        </div>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td style="width: 500px"></td>
+      <td class="weather-td">
+        <div style="overflow: hidden;">
+          <iframe id="wheather-frame"
+                  frameborder="no"
+                  scrolling="no"
+                  width="230px"
+                  height="180px"
+                  src="http://ti3d.ru/weather.html"
+                  style="width:100%;height:100%;"></iframe>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"
+          class="news-td">
+        <div style="overflow: hidden;">
+          <iframe id="news-frame"
+                  frameborder="no"
+                  scrolling="no"
+                  width="1000px"
+                  height="300px"
+                  src="http://ti3d.ru/mir2/news.html"
+                  style="width:100%;height:100%;"></iframe>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+тут будет инфа
+      </td>
+    </tr>
+  </table>
+
+</html>
+
+<script>
+  setInterval(function () {
+    var iframe = document.getElementById('wheather-frame');
+    iframe.src = 'http://ti3d.ru/weather.html';
+  }, 1800000);
+
+  function showDate() {
+    var placeholder = document.getElementById("datePlaceholder");
+    placeholder.innerHTML = customDateString();
+  }
+
+  showDate();
+
+  setInterval(function () {
+    showDate();
+  }, 60000);
+
+  function customDateString() {
+    var monthNames = [
+      "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+    ];
+
+    var dayNames = [
+      "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"
+    ];
+
+    var currentDate = new Date();
+    var theDay = dayNames[currentDate.getDay()];
+    var theMonth = monthNames[currentDate.getMonth()];
+    var theYear = currentDate.getFullYear();
+
+    return theDay + ", " + theMonth + " " + currentDate.getDate() + ", " + theYear
+  }
+</script>
