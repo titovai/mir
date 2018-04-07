@@ -1,4 +1,5 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 
 <head>
   <meta content="text/html"
@@ -10,135 +11,89 @@
   <link rel="stylesheet"
         href="css/style.css">
 
-  <style>
-    #root {
-      min-height: 240px !important;
-      margin: 0px;
-    }
-
-    .grid {
-      width: 1005px;
-    }
-
-    .clock-td {
-      height: 240px;
-      padding-left: 150px;
-    }
-
-    .weather-td {
-      height: 350px;
-      width: 450px;
-    }
-
-    .news-td {
-      height: 400px;
-    }
-
-    .flipClock {
-      transform: scale(2);
-    }
-
-    #wheather-frame {
-      zoom: 0.15;
-      -moz-transform: scale(2);
-      -moz-transform-origin: 0 0;
-      -o-transform: scale(2);
-      -o-transform-origin: 0 0;
-      -webkit-transform: scale(2);
-      -webkit-transform-origin: 0 0;
-    }
-  </style>
-
+  <link rel="stylesheet"
+        href="css/css.css">
 
 </head>
 
 <body bgcolor="#000000">
-  <table class="grid">
-    <tr>
-      <td colspan="2"
-          class="clock-td">
-        <div id="root"></div>
-        <script src="js/index.js"></script>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"
-          class="date_td">
 
-        <div id="datePlaceholder"
-             style="font-size: 40px; color: rgb(255, 255, 255); text-align: right;">
-        </div>
+  <div>
+    <div class="clock-row">
+      <div id="root"></div>
+      <script src="js/index.js"></script>
+    </div>
+    <div class="date-row">
+      <div id="date-placeholder"> </div>
+    </div>
+    <div class="currency-row">
+      <iframe id="fin-frame"
+              frameborder="no"
+              scrolling="no"
+              width="500px"
+              height="70px"
+              src="fin.html">
+      </iframe>
+    </div>
+    <div class="weather-row">
+      <iframe id="wheather-frame"
+              frameborder="no"
+              scrolling="no"
+              width="230px"
+              height="180px"
+              src="http://ti3d.ru/weather.html"
+              style="width:50%; height:100%;"></iframe>
+    </div>
+    <div class="news-row">
+      <iframe id="news-frame"
+              frameborder="no"
+              scrolling="no"
+              width="900px"
+              height="400px"
+              src="news.html">
+      </iframe>
+    </div>
+    <div class="contacts-row"></div>
+  </div>
 
-      </td>
-    </tr>
+  <script>
+    setInterval(function () {
+      var iframe = document.getElementById('wheather-frame');
+      iframe.src = 'http://ti3d.ru/weather.html';
+    }, 1800000);
 
-    <tr>
-      <td style="width: 500px"></td>
-      <td class="weather-td">
-        <div style="overflow: hidden;">
-          <iframe id="wheather-frame"
-                  frameborder="no"
-                  scrolling="no"
-                  width="230px"
-                  height="180px"
-                  src="http://ti3d.ru/weather.html"
-                  style="width:100%;height:100%;"></iframe>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"
-          class="news-td">
+    setInterval(function () {
+      var iframe = document.getElementById('news-frame');
+      iframe.src = 'news.html';
+    }, 60000);
 
-        <iframe id="news-frame"
-                frameborder="no"
-                scrolling="no"
-                width="1000px"
-                height="400px"
-                src="news.html">
-        </iframe>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        тут будет инфа
-      </td>
-    </tr>
-  </table>
+    function showDate() {
+      var placeholder = document.getElementById("date-placeholder");
+      placeholder.innerHTML = customDateString();
+    }
+
+    showDate();
+
+    setInterval(function () {
+      showDate();
+    }, 60000);
+
+    function customDateString() {
+      var monthNames = [
+        "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+      ];
+
+      var dayNames = [
+        "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"
+      ];
+
+      var currentDate = new Date();
+      var theDay = dayNames[currentDate.getDay()];
+      var theMonth = monthNames[currentDate.getMonth()];
+      var theYear = currentDate.getFullYear();
+
+      return theDay + ", " + theMonth + " " + currentDate.getDate() + ", " + theYear
+    }
+  </script>
 
 </html>
-
-<script>
-  setInterval(function () {
-    var iframe = document.getElementById('wheather-frame');
-    iframe.src = 'http://ti3d.ru/weather.html';
-  }, 1800000);
-
-  function showDate() {
-    var placeholder = document.getElementById("datePlaceholder");
-    placeholder.innerHTML = customDateString();
-  }
-
-  showDate();
-
-  setInterval(function () {
-    showDate();
-  }, 60000);
-
-  function customDateString() {
-    var monthNames = [
-      "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
-    ];
-
-    var dayNames = [
-      "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"
-    ];
-
-    var currentDate = new Date();
-    var theDay = dayNames[currentDate.getDay()];
-    var theMonth = monthNames[currentDate.getMonth()];
-    var theYear = currentDate.getFullYear();
-
-    return theDay + ", " + theMonth + " " + currentDate.getDate() + ", " + theYear
-  }
-</script>

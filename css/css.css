@@ -1,0 +1,73 @@
+#root {
+    min-height: 240px !important;
+    margin: 0px;
+  }
+
+  .grid {
+    width: 1005px;
+  }
+
+  .clock-td {
+    height: 240px;
+    padding-left: 150px;
+  }
+
+  .weather-td {
+    height: 350px;
+    width: 450px;
+  }
+
+  .news-td {
+    height: 400px;
+  }
+
+  .flipClock {
+    transform: scale(2);
+  }
+
+  .clock-row {
+    height: 250px;
+    padding-left: 140px;
+  }
+
+  .date-row {
+    height: 60px;
+  }
+
+  #date-placeholder {
+      height: 60px;
+      font-size: 40px; 
+      color: rgb(255, 255, 255); 
+      text-align: right;
+  }
+
+  .currency-row {
+    height:  75px;
+    padding-left: 550px;
+  }
+
+  .weather-row {
+    height: 320px;
+    margin-top: -30px;
+    padding-left: 580px;
+  }
+
+  .news-row {
+    height: 500px;
+    margin-top: 50px;
+    padding-left: 110px;
+  }
+
+  .contacts-row {
+    height: 50 px;
+  }
+
+  #wheather-frame {
+    zoom: 0.15;
+    -moz-transform: scale(2);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(2);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(2);
+    -webkit-transform-origin: 0 0;
+  }

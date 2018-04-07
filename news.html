@@ -1,11 +1,12 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿<!DOCTYPE html>
 <html>
 
 <head>
     <style>
         html {
             font-size: 25px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: right;
         }
 
         body {
@@ -21,10 +22,12 @@
     <style>
         .ya-news__title {
             margin-bottom: .7em;
+            text-align: right;
+            display: block;
         }
 
         .ya-news__title a {
-            margin-bottom: .5em;
+            margin-bottom: .9em;
             color: #EEE;
             text-decoration: none;
         }
@@ -50,39 +53,18 @@
             color: FFF;
         }
     </style>
-    <script src="//news.yandex.ru/ru/daily5.utf8.js"
+
+    <script src="//news.yandex.ru/ru/index5.utf8.js"
             charset="utf-8"></script>
-    <script>
-        (function (w, rubric) {
-            var data = w[rubric];
-
-            if (!data || !data.length) {
-                return;
-            }
-
+    <script>(function (w, rubric) {
+            var data = w[rubric]; if (!data || !data.length) { return; }
             function formatDate(ts) {
-                var d = new Date(ts * 1000);
-                return d.getHours() + ':' + ('0' + d.getMinutes()).substr(-2);
-            }
-            var html = '';
-            data.sort(function (a, b) {
-                return a.date == b.date ? a.time < b.time ? 1 : a.time > b.time ? -1 : 0 : a.date < b.date ? 1 : a.date > b.date ? -1 : void 0
-            });
-
-            for (var i = 0; i < data.length; i++) {
-                var item = data[i]; 
-                html += '<div><span class="ya-news__date">' + 
-                item.date + '&nbsp;' + 
-                item.time + '</span><span class="ya-news__title"><a href="' +
-                item.url + '" target="_blank">' + 
-                item.title + '</a></span></div><div class="ya-news__description">' + 
-                item.descr + '</div>';
+                var d = new Date(ts * 1000); return d.getHours() + ':' + ('0' + d.getMinutes()).substr(-2);
             } 
             
-            // html += '<div class="ya-news__all"><a href="//news.yandex.ru/" target="_blank">Все новости на ' + 
-            // formatDate(w.update_time_t) + '</a></div>'; 
-            document.write(html);
-        }(window, 'm_daily'));</script>
+            
+            var html = ''; for (var i = 0; i < data.length; i++) { var item = data[i]; html += '<div><span class="ya-news__title"><a href="' + item.url + '" target="_blank">' + item.title + '</a></span></div>'; } html += '<div class="ya-news__all"></div>'; document.write(html);
+        }(window, 'm_index'));</script>
 </body>
 
 </html>
